@@ -1,0 +1,4 @@
+INSERT INTO employees (`first_name`, `last_name`) 
+VALUES ("Ivana", "Ivanova"),
+("Stanka", "Genova"),
+("Gosho", "Pertov");
