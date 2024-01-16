@@ -1,0 +1,64 @@
+CREATE TABLE `directors`(
+`id` INT PRIMARY KEY AUTO_INCREMENT,
+`director_name` VARCHAR(255) NOT NULL,
+`notes` TEXT
+);
+
+INSERT INTO `directors`(`director_name`, `notes`)
+VALUES
+('Ivelina', 'Note1...'),
+('Simona', 'Note2...'),
+('Monika', 'Note3...'),
+('Ivan', 'Note4...'),
+('Gosho', 'Note5...');
+
+
+CREATE TABLE `genres`(
+`id` INT PRIMARY KEY AUTO_INCREMENT,
+`genre_name` VARCHAR(255) NOT NULL,
+`notes` TEXT
+);
+
+INSERT INTO `genres`(`genre_name`, `notes`)
+VALUES
+('Ivelina', 'Note1...'),
+('Simona', 'Note2...'),
+('Monika', 'Note3...'),
+('Ivan', 'Note4...'),
+('Gosho', 'Note5...');
+
+
+CREATE TABLE `categories`(
+`id` INT PRIMARY KEY AUTO_INCREMENT,
+`category_name` VARCHAR(255) NOT NULL,
+`notes` TEXT
+);
+
+INSERT INTO `categories`(`category_name`, `notes`)
+VALUES
+('Ivelina', 'Note1...'),
+('Simona', 'Note2...'),
+('Monika', 'Note3...'),
+('Ivan', 'Note4...'),
+('Gosho', 'Note5...');
+
+
+CREATE TABLE `movies`(
+`id` INT PRIMARY KEY AUTO_INCREMENT,
+`title` VARCHAR(255) NOT NULL,
+`director_id` INT,
+`copyright_year` INT,
+`length` INT,
+`genre_id` INT,
+`category_id` INT,
+`rating` DOUBLE,
+`notes` TEXT
+);
+
+INSERT INTO `movies`(title, director_id, copyright_year, length, genre_id, category_id, rating, notes)
+VALUES
+('Movie 1', 1, 2020, 120, 1, 1, 8.2, 'Note about Movie 1'),
+('Movie 2', 2, 2015, 105, 2, 1, 7.5, 'Note about Movie 2'),
+('Movie 3', 3, 2018, 150, 3, 2, 6.9, 'Note about Movie 3'),
+('Movie 4', 4, 2019, 130, 4, 3, 8.7, 'Note about Movie 4'),
+('Movie 5', 5, 2022, 95, 5, 4, 5.4, 'Note about Movie 5');
