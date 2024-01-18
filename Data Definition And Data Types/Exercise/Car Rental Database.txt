@@ -1,0 +1,95 @@
+CREATE TABLE categories(
+id INT PRIMARY KEY NOT NULL,
+category VARCHAR(255) NOT NULL,
+daily_rate DOUBLE,
+weekly_rate DOUBLE,
+monthly_rate DOUBLE,
+weekend_rate DOUBLE
+);
+
+ALTER TABLE categories
+CHANGE COLUMN `id` `id` INT NOT NULL AUTO_INCREMENT;
+
+
+INSERT INTO categories(category, daily_rate, weekly_rate, monthly_rate, weekend_rate)
+VALUES
+('Luxury', 100.00, 600.00, 2500.00, 120.00),
+('Compact', 50.00, 300.00, 1000.00, 60.00),
+('SUV', 70.00, 400.00, 1500.00, 80.00);
+
+CREATE TABLE cars(
+id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+plate_number VARCHAR(20) NOT NULL,
+make VARCHAR(255) NOT NULL,
+model VARCHAR(255) NOT NULL,
+car_year INT NOT NULL,
+category_id INT,
+doors INT NOT NULL,
+picture BLOB,
+car_condition VARCHAR(255),
+available BOOLEAN NOT NULL
+);
+
+INSERT INTO cars (plate_number, make, model, car_year, category_id, doors, car_condition, available)
+VALUES
+    ('ABC123', 'Toyota', 'Corolla', 2020, 1, 4, 'Good', 1),
+    ('XYZ789', 'Ford', 'Explorer', 2019, 2, 5, 'Excellent', 1),
+    ('DEF456', 'Mercedes-Benz', 'S-Class', 2022, 3, 4, 'Like New', 1);
+
+
+CREATE TABLE employees (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    title VARCHAR(255),
+    notes TEXT
+);
+
+INSERT INTO employees (first_name, last_name, title, notes)
+VALUES
+    ('John', 'Doe', 'Manager', 'Team leader'),
+    ('Jane', 'Smith', 'Sales Associate', NULL),
+    ('Robert', 'Johnson', 'Maintenance Technician', 'Experienced technician');
+    
+
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    driver_licence_number VARCHAR(20) NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    city VARCHAR(255),
+    zip_code VARCHAR(10),
+    notes TEXT
+);
+
+INSERT INTO customers (driver_licence_number, full_name, address, city, zip_code, notes)
+VALUES
+    ('DL12345', 'Alice Johnson', '123 Main St', 'New York', '10001', NULL),
+    ('DL56789', 'Bob Wilson', '456 Elm St', 'Los Angeles', '90001', 'Frequent renter'),
+    ('DL98765', 'Eve Davis', '789 Oak St', 'Chicago', '60601', 'Preferred customer');
+    
+    
+CREATE TABLE rental_orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT,
+    customer_id INT,
+    car_id INT,
+    car_condition VARCHAR(255),
+    tank_level DECIMAL(5, 2),
+    kilometrage_start INT,
+    kilometrage_end INT,
+    total_kilometrage INT,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    total_days INT NOT NULL,
+    rate_applied DECIMAL(10, 2) NOT NULL,
+    tax_rate DECIMAL(5, 2) NOT NULL,
+    order_status VARCHAR(50) NOT NULL,
+    notes TEXT
+);
+
+INSERT INTO rental_orders (employee_id, customer_id, car_id, car_condition, tank_level, kilometrage_start, kilometrage_end, total_kilometrage, start_date, end_date, total_days, rate_applied, tax_rate, order_status, notes)
+VALUES
+    (1, 1, 1, 'Good', 70.5, 5000, 5500, 500, '2023-09-01', '2023-09-05', 5, 50.00, 0.08, 'Completed', 'No issues'),
+    (2, 2, 2, 'Excellent', 85.0, 3000, 3500, 500, '2023-09-02', '2023-09-06', 4, 70.00, 0.08, 'Completed', 'Smooth rental'),
+    (3, 3, 3, 'Like New', 95.5, 1000, 1500, 500, '2023-09-03', '2023-09-07', 4, 100.00, 0.08, 'Completed', 'High-end car');
